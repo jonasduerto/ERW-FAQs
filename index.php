@@ -3,7 +3,7 @@
  * Plugin Name: ElReyWeb's FAQ
  * Plugin URI: http://elreyweb.com
  * Description: FAQ by ElReyWeb.com
- * Version: 1.9.01
+ * Version: 1.9.02
  * Author: ElReyWeb's Team 
  * Author URI: http://elreyweb.com
  * License: 
@@ -17,11 +17,8 @@ global $faqs_Full_Version;
 define( 'ERW_FAQ_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ERW_FAQ_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-define('WP_DEBUG', true);
-
 register_activation_hook(__FILE__,'Set_ERW_FAQ_Options');
 add_filter('upgrader_post_install', 'Set_ERW_FAQ_Options');
-
 
 add_action('admin_menu' , function() {
     global $submenu;
@@ -41,20 +38,6 @@ add_action('admin_menu' , function() {
 	$submenu['ERW-FAQ-Options'][0][0] = "Dashboard";
 	ksort($submenu['ERW-FAQ-Options']);
 }, 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 add_action('init',function() {
     $labels = array(
         'name'               => __('FAQs', 'ERW_FAQ'),
