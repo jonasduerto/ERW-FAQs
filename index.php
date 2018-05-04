@@ -55,7 +55,8 @@ global $post;
                     </div>
                 </div>
 
-           <?php endwhile; ?>
+
+           <?php $i++; endwhile; ?>
         <?php endif; ?>
     </div>
 
