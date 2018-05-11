@@ -14,22 +14,14 @@ require_once('faq_items.php');
 require_once('faq_category.php');
 
 add_shortcode( 'faqs', function ( $atts ){
-    // Attributes
-    extract( 
-        shortcode_atts( array(
-            'catname'      => '',
-            'class_title'  => 'panel-title',
-            'class_cnt'    => 'listFaq',
-            'show_cont'    => 'yes',
-            'show_sn_share'=> 'yes',
-            'show_R'       => 'yes',
-            'style'        => '',
-            'sec_title'    =>  'Frequent questions',
-            'sec_subtitle' => 'Thank you again for visiting our website and if you have any questions please feel free to contact us at anytime.'), 
-        $atts )
-    );
-
-global $post;
+    extract( shortcode_atts( array(
+        'catname'      => '',
+        'show_cont'    => 'yes',
+        'show_sn_share'=> 'yes',
+        'show_R'       => 'yes',
+        'style'        => '',
+    ), $atts ) );
+    global $post;
     $loop   = new WP_Query( array('post_type'=>'faqs','order'=>'ASC','orderby'=>'order','showposts'=>'-1') );
     $i      = 1;
     $count  = 0;
@@ -40,7 +32,6 @@ global $post;
             while ( $loop->have_posts() ) : $loop->the_post();
                 $_show_cont = ($show_cont == 'yes' ) ? '<span class="redon">'. $i .') </span>' : '' ;
                 $_show_R    = ($show_R    == 'yes' ) ? '<span class="resp">R: </span>'         : '' ; ?>
-
                 <div class="col-sm-6">
                     <div class="listFaq <?php echo $style; ?> faq-sec pb10">
                         <h4 class="title"> 
@@ -49,20 +40,16 @@ global $post;
                         </h4 >
                         <p class="text">
                             <?php echo $_show_R; ?>
-                            <?php echo $sec_subtitle; ?>
                             <?php echo do_shortcode( get_the_content() ); ?>
                         </p>
                     </div>
                 </div>
-
-
            <?php $i++; endwhile; ?>
         <?php endif; ?>
     </div>
 
     <?php $content .= ob_get_clean();
     return $content;
-
 });
 
 // Register style sheet
