@@ -22,9 +22,14 @@ add_shortcode( 'faqs', function ( $atts ){
         'style'        => '',
     ), $atts ) );
     global $post;
-    $loop   = new WP_Query( array('post_type'=>'faqs','order'=>'ASC','orderby'=>'order','showposts'=>'-1') );
-    $i      = 1;
-    $count  = 0;
+    $i     = 1;
+    $count = 0;
+    $loop  = new WP_Query( array(
+        'post_type' => 'faqs',
+        'order'     => 'ASC',
+        'orderby'   => 'order',
+        'showposts' => '-1'
+    ));
     ob_start(); ?>
 
     <div class="faqs row justify-content-center align-content-center">

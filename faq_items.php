@@ -44,6 +44,5 @@ function faqs() {
         'capability_type'     => 'post',
 	);
 
-
     register_post_type( 'faqs' , $args );
 }
