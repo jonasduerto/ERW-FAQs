@@ -3,7 +3,7 @@
  * Plugin Name: ElReyWeb's FAQ
  * Plugin URI: http://elreyweb.com
  * Description: FAQ by ElReyWeb.com
- * Version: 1.9.01
+ * Version: 1.9.2
  * Author: ElReyWeb's Team 
  * Author URI: http://elreyweb.com
  * License: 
