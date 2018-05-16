@@ -17,9 +17,26 @@
     padding: 15px 0px;
 }
 
-
-
-
-
-
-
+.question {
+    margin-top: 0;
+    margin-left: 40px;
+    font-weight: 900;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 3px;
+}
+.question-q-box {
+    height: 30px;
+    width: 30px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    float: left;
+    line-height: 30px;
+    background-color: #515357;
+}
+.answer {
+    margin-left: 40px;
+    color: #444;
+    margin-bottom: 40px;
+}
