@@ -20,8 +20,8 @@ add_shortcode( 'faqs', function ( $atts ){
     extract( shortcode_atts(
         array(
             'catname'       => '',
-            'class_one'     => 'col-md-5 col-md-offset-1',
-            'class_two'     => 'col-md-6',
+            'class_one'     => 'col-md-6',
+            'class_two'     => 'col-md-5 col-md-offset-1',
             'class_title'   => 'panel-title',
             'class_cnt'     => 'listFaq',
             'show_cont'     => 'yes',
@@ -37,16 +37,14 @@ add_shortcode( 'faqs', function ( $atts ){
             'orderby'             => 'order',
             'showposts'           => '-1',
         );
-
-        $loop     = new WP_Query( $args );
-        $output   = '<div class="faqs row justify-content-center align-content-center">';
-        $i        = 1;
-        $more     = 0;
-        // $count = count($loop->posts);
-        $count    = 0;
-        $row      = ($full == 'yes') ? 'full' : '';
-        $_show_R    = ($show_R !== 'yes' ) ? '<span class="resp">'.__( 'A', 'faqs' ).': </span>'         : '' ;
-        $sharing_button ="";
+        
+        $loop           = new WP_Query( $args );
+        $output         = '<div class="faqs row justify-content-center align-content-center">';
+        $i              = 1;
+        // $count       = count($loop->posts);
+        $count          = 0;
+        $row            = ($full == 'yes') ? 'full' : '';
+        $sharing_button = "";
         if ( $loop->have_posts() ) : 
             while ( $loop->have_posts() ) : $loop->the_post();
                 $lfclass = ($i%2==0) ? $class_one : $class_two ;
@@ -56,15 +54,18 @@ add_shortcode( 'faqs', function ( $atts ){
                 $output .= '    <div class="panel-body">';
 
                 if ($show_cont == 'yes' ) {
-                    $output .= '<h4 class="'.$class_title.' question">';
-                    $output .= '<span class="redon">'. $i .') </span>';
-                    $output .= ''.  get_the_title() .'</h4>';
+                    $output .= '<div class="question-q-box redon'.$class_title.'">'. $i .') </div>';
+                    $output .= '<h4 class="'.$class_title.' question">'.  get_the_title() .'</h4>';
                 } else {
-                    $output .= '<div class="question-q-box">'.__( 'Q.', 'themeFAQs' ).' </div>';
+                    $output .= '<div class="question-q-box '.$class_title.'">'.__( 'Q.', 'themeFAQs' ).' </div>';
                     $output .= '<h4 class="'.$class_title.' question">'.  get_the_title() .'</h4>';
                 }
+                    $output .= '<p class="answer '.$class_cnt.'">';
+                if ($show_R !== 'yes' ) {
+                    $output .= '<span class="resp">'.__( 'A', 'faqs' ).': </span>';
+                }
+                    $output .= ' '. do_shortcode( get_the_content() ) .'</p>';
 
-                $output .= '        <p class="answer '.$class_cnt.'">'.$_show_R.' '. do_shortcode( get_the_content() ) .'</p>';
                 $output .= '    </div>';
                 // if ($show_sn_share == 'yes') { $output .= $sharing_button; }
                 $output .= '</div>';
